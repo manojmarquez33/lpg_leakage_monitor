@@ -5,6 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:lpg_gas_leakage/GasLevel.dart';
 import 'package:lpg_gas_leakage/Guidelines.dart';
 
+import 'VideoHelp.dart';
+import 'components/NavigationDrawer.dart';
+
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -58,62 +61,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           backgroundColor: Colors.white,
           iconTheme: IconThemeData(color: Colors.black)),
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            DrawerHeader(
-              decoration: BoxDecoration(color: Colors.white),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Image.asset(
-                    'assets/lpg.png',
-                    height: 64,
-                    width: 64,
-                  ),
-                  SizedBox(height: 8),
-                  Text(
-                    'LPG leakage detector',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 24,
-                    ),
-                  ),
-                  Text(
-                    'CodeMub',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 15,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            ListTile(
-              leading: Icon(Icons.share),
-              title: Text('Share app'),
-              onTap: () {
-                // TODO: Implement rate app functionality
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.star),
-              title: Text('Rate App'),
-              onTap: () {
-                // TODO: Implement rate app functionality
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.bug_report),
-              title: Text('Report Bug'),
-              onTap: () {
-                // TODO: Implement report bug functionality
-              },
-            ),
-          ],
-        ),
-      ),
+      drawer: SideNavigationDrawer(),
       body: Column(
         children: [
           Container(
@@ -163,10 +111,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 );
               }),
               _buildCard(Icons.video_call, 'Videos', () {
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(builder: (context) => IssuseForm()),
-                // );
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => VideoListScreen()),
+                );
               }),
               _buildCard(Icons.report, 'Accident Report', () {
                 // Navigator.push(

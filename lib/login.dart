@@ -1,5 +1,12 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:http/http.dart' as http;
 import 'package:lpg_gas_leakage/main.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import 'components/AppConstant.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -8,12 +15,9 @@ void main() {
   ));
 }
 
-class AppConstants {
-  static const LinearGradient appColor = LinearGradient(
-    colors: [Colors.blue, Colors.purple],
-  );
-  static const String siteLink = 'https://example.com';
-}
+final LinearGradient appColor = AppConstants.appColor;
+final Color customGreen = Color(0xFF38d39f);
+final String siteLink = AppConstants.siteLink;
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -27,16 +31,50 @@ class _LoginScreenState extends State<LoginScreen> {
   bool _isLoading = false;
   bool _isValid = false;
 
-  void _login() {
-    // Replace this block with your authentication logic
-    if (_usernameController.text == 'mano' &&
-        _passwordController.text == '1426') {
-      // Navigate to the home page if the credentials are correct
-      Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => HomePage()));
+  Future<void> _login() async {
+    setState(() {
+      _isLoading = true;
+    });
+
+    final String username = _usernameController.text;
+    final String password = _passwordController.text;
+
+    final String apiUrl = "https://kcetmap.000webhostapp.com/login.php";
+
+    // final String apiUrl =
+    //     "https://kcet-canteen-web.000webhostapp.com/Mobile_app_API/user_info_mobile.php";
+
+    final response = await http.post(Uri.parse(apiUrl), body: {
+      "username": username,
+      "password": password,
+    });
+
+    setState(() {
+      _isLoading = false;
+    });
+
+    final data = json.decode(response.body);
+    if (data['success'] == true) {
+      Fluttertoast.showToast(
+        msg: "Welcome $username",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        backgroundColor: Colors.green,
+      );
+
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      await prefs.setString('username', username);
+
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (BuildContext context) => HomePage()),
+      );
     } else {
-      // Handle incorrect credentials, show an error message or do something else
-      print('Invalid username or password');
+      Fluttertoast.showToast(
+        msg: "Invalid username or password",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        backgroundColor: Colors.red,
+      );
     }
   }
 
@@ -62,7 +100,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         const SizedBox(height: 16.0),
                         const Text(
-                          'LPG Leakage detector',
+                          'KCET Canteen',
                           style: TextStyle(
                             fontSize: 30.0,
                             fontWeight: FontWeight.bold,
@@ -81,11 +119,11 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         prefixIcon: Icon(
                           Icons.person,
-                          color: Colors.blue, // Updated to a general color
+                          color: customGreen,
                         ),
                         border: OutlineInputBorder(),
                         focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.blue),
+                          borderSide: BorderSide(color: customGreen),
                         ),
                       ),
                       validator: (value) {
@@ -104,11 +142,10 @@ class _LoginScreenState extends State<LoginScreen> {
                         labelStyle: TextStyle(
                           color: Colors.black,
                         ),
-                        prefixIcon: Icon(Icons.lock,
-                            color: Colors.blue), // Updated to a general color
+                        prefixIcon: Icon(Icons.lock, color: customGreen),
                         border: OutlineInputBorder(),
                         focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.blue),
+                          borderSide: BorderSide(color: Color(0xFF097969)),
                         ),
                       ),
                       validator: (value) {
@@ -120,15 +157,12 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     const SizedBox(height: 32.0),
                     Container(
-                      width: 200,
+                      width: 400,
                       height: 50,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(25),
                         gradient: LinearGradient(
-                          colors: [
-                            Colors.blue,
-                            Colors.lightBlueAccent
-                          ], // Updated to general colors
+                          colors: [Color(0xFF38D39F), Color(0xFF27AE60)],
                           begin: Alignment.centerLeft,
                           end: Alignment.centerRight,
                         ),
@@ -172,7 +206,53 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                     const SizedBox(height: 20.0),
+                    Text(
+                      "If you don't have an account",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
                     const SizedBox(height: 20.0),
+                    Container(
+                      width: 400,
+                      height: 50,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(25),
+                        gradient: LinearGradient(
+                          colors: [Color(0xFF38D39F), Color(0xFF27AE60)],
+                          begin: Alignment.centerLeft,
+                          end: Alignment.centerRight,
+                        ),
+                      ),
+                      child: ElevatedButton(
+                        onPressed: () {
+                          // Navigator.push(
+                          //     context,
+                          //     MaterialPageRoute(
+                          //         builder: (context) => UserType()));
+                        },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(Icons.person_add),
+                            const SizedBox(width: 8.0),
+                            const Text(
+                              'Register',
+                              style: TextStyle(fontSize: 18),
+                            ),
+                          ],
+                        ),
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.transparent,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(25),
+                          ),
+                          minimumSize: Size(150, 50),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),
