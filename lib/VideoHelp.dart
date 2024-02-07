@@ -67,6 +67,7 @@ class VideoListScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('LPG Safety Videos'),
+        backgroundColor: Color(0xFF4285F4),
       ),
       body: ListView.builder(
         itemCount: videoList.length,

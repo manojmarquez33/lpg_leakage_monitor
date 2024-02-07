@@ -3,15 +3,19 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
-import 'package:lpg_gas_leakage/main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'components/AppConstant.dart';
+import 'main.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  String? username = prefs.getString('username');
+
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
-    home: LoginScreen(),
+    home: username != null ? HomePage() : LoginScreen(),
   ));
 }
 
@@ -29,7 +33,6 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _passwordController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   bool _isLoading = false;
-  bool _isValid = false;
 
   Future<void> _login() async {
     setState(() {
@@ -40,9 +43,6 @@ class _LoginScreenState extends State<LoginScreen> {
     final String password = _passwordController.text;
 
     final String apiUrl = "https://kcetmap.000webhostapp.com/login.php";
-
-    // final String apiUrl =
-    //     "https://kcet-canteen-web.000webhostapp.com/Mobile_app_API/user_info_mobile.php";
 
     final response = await http.post(Uri.parse(apiUrl), body: {
       "username": username,
