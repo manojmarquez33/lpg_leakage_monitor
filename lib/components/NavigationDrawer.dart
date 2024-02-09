@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
+import 'package:lpg_gas_leakage/login.dart';
+import 'package:lpg_gas_leakage/profile.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SideNavigationDrawer extends StatefulWidget {
   @override
@@ -43,9 +47,44 @@ class _SideNavigationDrawerState extends State<SideNavigationDrawer> {
     }
   }
 
+  Future<void> _launchURL(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
+  void comingSoon(String message) {
+    Fluttertoast.showToast(
+      msg: "Coming Soon",
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.CENTER,
+      backgroundColor: Colors.black54,
+    );
+  }
+
+  void _shareApp() async {
+    String playStoreUrl =
+        'https://play.google.com/store/apps/details?id=com.kcet.canteen';
+
+    await _launchURL(playStoreUrl);
+  }
+
+  void _rateApp() {
+    String playStoreUrl =
+        'https://play.google.com/store/apps/details?id=com.kcet.canteen';
+
+    _launchURL(playStoreUrl);
+  }
+
   void _logout() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.remove('username');
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => LoginScreen()),
+    );
     setState(() {
       username = '';
     });
@@ -66,7 +105,9 @@ class _SideNavigationDrawerState extends State<SideNavigationDrawer> {
                 SizedBox(height: 10.0),
                 CircleAvatar(
                   child: Text(
-                    username!.substring(0, 1).toUpperCase(),
+                    username.isNotEmpty
+                        ? username.substring(0, 1).toUpperCase()
+                        : '',
                     style: TextStyle(
                       fontSize: 40.0,
                       fontWeight: FontWeight.bold,
@@ -93,14 +134,17 @@ class _SideNavigationDrawerState extends State<SideNavigationDrawer> {
             icon: Icons.person,
             title: 'Profile',
             onTap: () {
-              // Navigate to profile
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ProfilePage()),
+              );
             },
           ),
           DrawerItem(
             icon: Icons.new_releases,
             title: 'Latest News',
             onTap: () {
-              // Navigate to latest news
+              comingSoon('Latest News');
             },
           ),
           DrawerDivider(),
@@ -108,33 +152,38 @@ class _SideNavigationDrawerState extends State<SideNavigationDrawer> {
             icon: Icons.bug_report,
             title: 'Bug Report',
             onTap: () {
-              // Navigate to bug report
+              comingSoon('Bug Report');
             },
           ),
           DrawerItem(
             icon: Icons.code,
             title: 'Developers',
             onTap: () {
-              // Navigate to developers
+              comingSoon('Developers');
             },
           ),
           DrawerDivider(),
           DrawerItem(
             icon: Icons.android,
-            title: 'About app', onTap: () {},
-            //onTap: _shareApp
+            title: 'About app',
+            onTap: () {
+              comingSoon('About app');
+            },
           ),
           DrawerItem(
             icon: Icons.star_rate_rounded,
-            title: 'Rate app', onTap: () {},
+            title: 'Rate app',
+            onTap: () {
+              comingSoon('About app');
+            },
             //onTap: _rateApp
           ),
           DrawerItem(
             icon: Icons.share,
-            title: 'Share app', onTap: () {},
-            // onTap: () {
-            //   comingSoon('About');
-            // },
+            title: 'Share app',
+            onTap: () {
+              comingSoon('Share app');
+            },
           ),
           DrawerDivider(),
           DrawerItem(

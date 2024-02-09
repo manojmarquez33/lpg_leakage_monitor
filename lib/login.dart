@@ -20,7 +20,7 @@ void main() async {
 }
 
 final LinearGradient appColor = AppConstants.appColor;
-final Color customGreen = Color(0xFF38d39f);
+final Color customGreen = Color(0xFF4285F4);
 final String siteLink = AppConstants.siteLink;
 
 class LoginScreen extends StatefulWidget {
@@ -95,12 +95,12 @@ class _LoginScreenState extends State<LoginScreen> {
                     Column(
                       children: [
                         CircleAvatar(
-                          backgroundImage: AssetImage('assets/lpg.png'),
-                          radius: 40.0,
+                          backgroundImage: AssetImage('assets/level.png'),
+                          radius: 50.0,
                         ),
                         const SizedBox(height: 16.0),
                         const Text(
-                          'KCET Canteen',
+                          'Smart LPG monitor',
                           style: TextStyle(
                             fontSize: 30.0,
                             fontWeight: FontWeight.bold,
@@ -123,7 +123,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         border: OutlineInputBorder(),
                         focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: customGreen),
+                          borderSide: BorderSide(color: Color(0xFF4285F4)),
                         ),
                       ),
                       validator: (value) {
@@ -145,7 +145,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         prefixIcon: Icon(Icons.lock, color: customGreen),
                         border: OutlineInputBorder(),
                         focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Color(0xFF097969)),
+                          borderSide: BorderSide(color: Color(0xFF4285F4)),
                         ),
                       ),
                       validator: (value) {
@@ -157,12 +157,12 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     const SizedBox(height: 32.0),
                     Container(
-                      width: 400,
+                      width: 300,
                       height: 50,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(25),
                         gradient: LinearGradient(
-                          colors: [Color(0xFF38D39F), Color(0xFF27AE60)],
+                          colors: [Color(0xFF4285F4), Color(0xFF4285F4)],
                           begin: Alignment.centerLeft,
                           end: Alignment.centerRight,
                         ),
@@ -216,12 +216,12 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     const SizedBox(height: 20.0),
                     Container(
-                      width: 400,
+                      width: 300,
                       height: 50,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(25),
                         gradient: LinearGradient(
-                          colors: [Color(0xFF38D39F), Color(0xFF27AE60)],
+                          colors: [Color(0xFF4285F4), Color(0xFF4285F4)],
                           begin: Alignment.centerLeft,
                           end: Alignment.centerRight,
                         ),
