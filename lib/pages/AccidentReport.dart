@@ -27,15 +27,25 @@ class _AccidentReportState extends State<AccidentReport> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Gas Leak Report'),
-        backgroundColor: Color(0xFF4285F4),
+        title: Text(
+          'Accident Report',
+          style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),
+        ),
+        backgroundColor:Color(0xFF4285F4),
+        iconTheme: IconThemeData(color: Colors.black),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back,color: Colors.white,),
+          onPressed: () {
+            Navigator.pop(context); // Go back to the previous page
+          },
+        ),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(10.0),
         child: Card(
           elevation: 4,
           child: Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(10.0),
             child: Form(
               key: _formKey,
               child: ListView(
@@ -58,8 +68,27 @@ class _AccidentReportState extends State<AccidentReport> {
                       // Call function to send data to PHP backend
                       sendDataToBackend();
                     },
-                    child: const Text('Submit'),
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF4285F4)),
+                      elevation: MaterialStateProperty.all<double>(8.0), // Adjust elevation as needed
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                      ),
+                    ),
+                    child: Container(
+                      padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+                      child: Text(
+                        'Submit',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16.0,
+                        ),
+                      ),
+                    ),
                   ),
+
                 ],
               ),
             ),
@@ -72,7 +101,7 @@ class _AccidentReportState extends State<AccidentReport> {
   Widget _buildTextField(
       String label, IconData icon, TextEditingController controller) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      padding: const EdgeInsets.symmetric(vertical: 1.0),
       child: TextFormField(
         controller: controller,
         validator: (value) {

@@ -66,8 +66,18 @@ class VideoListScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('LPG Safety Videos'),
-        backgroundColor: Color(0xFF4285F4),
+        title: Text(
+          'Video Guidenece',
+          style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),
+        ),
+        backgroundColor:Color(0xFF4285F4),
+        iconTheme: IconThemeData(color: Colors.black),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back,color: Colors.white,),
+          onPressed: () {
+            Navigator.pop(context); // Go back to the previous page
+          },
+        ),
       ),
       body: ListView.builder(
         itemCount: videoList.length,

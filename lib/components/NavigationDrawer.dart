@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
-import 'package:lpg_gas_leakage/login.dart';
-import 'package:lpg_gas_leakage/profile.dart';
+import 'package:lpg_gas_leakage/NavBarMenus/profile.dart';
+import 'package:lpg_gas_leakage/pages/login.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 

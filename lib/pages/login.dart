@@ -5,19 +5,10 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'components/AppConstant.dart';
-import 'main.dart';
+import '../components/AppConstant.dart';
+import '../main.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  SharedPreferences prefs = await SharedPreferences.getInstance();
-  String? username = prefs.getString('username');
 
-  runApp(MaterialApp(
-    debugShowCheckedModeBanner: false,
-    home: username != null ? HomePage() : LoginScreen(),
-  ));
-}
 
 final LinearGradient appColor = AppConstants.appColor;
 final Color customGreen = Color(0xFF4285F4);
@@ -119,7 +110,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         prefixIcon: Icon(
                           Icons.person,
-                          color: customGreen,
+                          color: Colors.white,
                         ),
                         border: OutlineInputBorder(),
                         focusedBorder: OutlineInputBorder(

@@ -74,10 +74,16 @@ class _ProfilePageState extends State<ProfilePage> {
       appBar: AppBar(
         title: Text(
           'User Profile',
-          style: TextStyle(color: Colors.white),
+          style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),
         ),
-        backgroundColor: Color(0xFF4285F4),
-        elevation: 0, // No shadow under the app bar
+        backgroundColor:Color(0xFF4285F4),
+        iconTheme: IconThemeData(color: Colors.black),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back,color: Colors.white,),
+          onPressed: () {
+            Navigator.pop(context); // Go back to the previous page
+          },
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

@@ -1,10 +1,24 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:lpg_gas_leakage/AccidentReport.dart';
-import 'package:lpg_gas_leakage/GasLevel.dart';
-import 'package:lpg_gas_leakage/Guidelines.dart';
-import 'package:lpg_gas_leakage/VideoHelp.dart';
 import 'package:lpg_gas_leakage/components/NavigationDrawer.dart';
+import 'package:lpg_gas_leakage/pages/AccidentReport.dart';
+import 'package:lpg_gas_leakage/pages/GasLevel.dart';
+import 'package:lpg_gas_leakage/pages/Guidelines.dart';
+import 'package:lpg_gas_leakage/pages/VideoHelp.dart';
+import 'package:lpg_gas_leakage/pages/login.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  String? username = prefs.getString('username');
+
+  runApp(MaterialApp(
+    debugShowCheckedModeBanner: false,
+    home: username != null ? HomePage() : LoginScreen(),
+  ));
+}
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -45,10 +59,11 @@ class _MyHomePageState extends State<MyHomePage> {
       key: _scaffoldKey,
       appBar: AppBar(
         title: Text(
-          "LPG Leakage Detector",
-          style: TextStyle(color: Colors.black),
+          'LPG Leakage Monitor',
+          style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),
         ),
-        backgroundColor: Colors.white,
+        // backgroundColor:Color(0xFF4285F4),
+        backgroundColor:Colors.white,
         iconTheme: IconThemeData(color: Colors.black),
       ),
       drawer: SideNavigationDrawer(),
@@ -102,7 +117,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => ThingSpeakDataPage()),
+                        builder: (context) => GasLevel()),
                   );
                 }),
                 _buildCard('assets/compliant.png', 'Guidelines', () {
@@ -128,21 +143,26 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            backgroundColor: Color(0xFF070A52),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            backgroundColor: Color(0xFF070A52),
-            label: 'About',
-          ),
-        ],
+      bottomNavigationBar: NavigationBarTheme(
+        data: NavigationBarThemeData(
+            indicatorColor: Color(0xFF94e5ff),
+            labelTextStyle: MaterialStateProperty.all(
+                TextStyle(fontSize: 14, fontWeight: FontWeight.w500))),
+        child: NavigationBar(
+          height: 75,
+          backgroundColor: Color(0xFFf1f5fb),
+          selectedIndex: _selectedIndex,
+          onDestinationSelected: (index) =>
+              setState(() => this._selectedIndex = index),
+          destinations: [
+            NavigationDestination(
+                icon: Icon(Icons.home), label: 'Home'),
+            NavigationDestination(
+                icon: Icon(Icons.call), label: 'Emergency'),
+            NavigationDestination(
+                icon: Icon(Icons.person), label: 'About'),
+          ],
+        ),
       ),
     );
   }
