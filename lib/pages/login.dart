@@ -110,7 +110,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         prefixIcon: Icon(
                           Icons.person,
-                          color: Colors.white,
+                          color: Color(0xFF4285F4),
                         ),
                         border: OutlineInputBorder(),
                         focusedBorder: OutlineInputBorder(
@@ -178,11 +178,11 @@ class _LoginScreenState extends State<LoginScreen> {
                               : Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Icon(Icons.login),
+                                    Icon(Icons.login,color: Colors.white,),
                                     const SizedBox(width: 8.0),
                                     const Text(
                                       'Login',
-                                      style: TextStyle(fontSize: 18),
+                                      style: TextStyle(fontSize: 18,color: Colors.white),
                                     ),
                                   ],
                                 ),
@@ -227,11 +227,11 @@ class _LoginScreenState extends State<LoginScreen> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Icon(Icons.person_add),
+                            Icon(Icons.person_add,color: Colors.white),
                             const SizedBox(width: 8.0),
                             const Text(
                               'Register',
-                              style: TextStyle(fontSize: 18),
+                              style: TextStyle(fontSize: 18,color: Colors.white),
                             ),
                           ],
                         ),

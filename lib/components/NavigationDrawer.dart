@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
+import 'package:lpg_gas_leakage/NavBarMenus/AboutApp.dart';
 import 'package:lpg_gas_leakage/NavBarMenus/profile.dart';
 import 'package:lpg_gas_leakage/pages/login.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -167,7 +168,10 @@ class _SideNavigationDrawerState extends State<SideNavigationDrawer> {
             icon: Icons.android,
             title: 'About app',
             onTap: () {
-              comingSoon('About app');
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => AboutAppPage()),
+              );
             },
           ),
           DrawerItem(

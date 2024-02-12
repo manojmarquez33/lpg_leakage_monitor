@@ -32,6 +32,7 @@ class _GasLevelState extends State<GasLevel> {
   StreamController<Map<String, String>> _dataStreamController = StreamController<Map<String, String>>();
   Timer? timer;
   FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+  int threshhold =225;
 
   @override
   void initState() {
@@ -104,9 +105,9 @@ class _GasLevelState extends State<GasLevel> {
       });
 
       // Check if gas level is greater than 50 and send notification
-      double gasLevel = double.tryParse(data['feeds'][0]['field1']?.toString() ?? '0.0') ?? 0.0;
-      if (gasLevel > 50) {
-        sendNotification("Gas leakage occurred", "Gas level is greater than 50");
+      double gasLevel = double.tryParse(data['feeds'][0]['field2']?.toString() ?? '0.0') ?? 0.0;
+      if (gasLevel > threshhold) {
+        sendNotification("Gas leakage occurred","");
         vibratePhone();
       }
     } else {
@@ -149,10 +150,10 @@ class _GasLevelState extends State<GasLevel> {
     Vibration.vibrate(duration: 2000);
   }
 
-  Widget getImageBasedOnLevel(String lpgStatus) {
-    double gasLevel = double.tryParse(lpgStatus) ?? 0.0;
+  Widget getImageBasedOnLevel(String test) {
+    double gasLevel = double.tryParse(test) ?? 0.0;
 
-    if (gasLevel <= 50) {
+    if (gasLevel <= threshhold) {
       return Image.asset(
         'assets/lpg.png',
         width: 200,
@@ -257,7 +258,7 @@ class _GasLevelState extends State<GasLevel> {
                     SizedBox(height: 10.0),
                     lpgStatus == 'Loading...'
                         ? buildLoadingShimmer()
-                        : getImageBasedOnLevel(lpgStatus),
+                        : getImageBasedOnLevel(test),
                     SizedBox(height: 20),
                     lpgStatus == 'Loading...'
                         ? buildLoadingShimmer()
