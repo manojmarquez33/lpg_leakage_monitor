@@ -30,7 +30,6 @@ class _ProfilePageState extends State<ProfilePage> {
       username = prefs.getString('username') ?? "Guest";
     });
 
-    // Fetch user details from the API
     _fetchUserData();
   }
 
@@ -53,14 +52,12 @@ class _ProfilePageState extends State<ProfilePage> {
           });
         }
       } else {
-        // Handle errors
         print('Failed to load user data');
         setState(() {
           isLoading = false;
         });
       }
     } catch (error) {
-      // Handle network errors
       print('Error: $error');
       setState(() {
         isLoading = false;

@@ -12,7 +12,7 @@ import '../main.dart';
 
 final LinearGradient appColor = AppConstants.appColor;
 final Color customGreen = Color(0xFF4285F4);
-final String siteLink = AppConstants.siteLink;
+//final String siteLink = AppConstants.siteLink;
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -91,7 +91,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         const SizedBox(height: 16.0),
                         const Text(
-                          'Smart LPG monitor',
+                          'Smart LPG Monitor',
                           style: TextStyle(
                             fontSize: 30.0,
                             fontWeight: FontWeight.bold,

@@ -38,10 +38,8 @@ class _GasLevelState extends State<GasLevel> {
   void initState() {
     super.initState();
 
-    // Initialize notifications
     initializeNotifications();
 
-    // Initialize background tasks
     Workmanager().initialize(
       callbackDispatcher,
       isInDebugMode: false,
@@ -71,19 +69,17 @@ class _GasLevelState extends State<GasLevel> {
 
   static void callbackDispatcher() {
     Workmanager().executeTask((task, inputData) async {
-      await fetchDataPeriodically();
+      //await fetchDataPeriodically();
       return Future.value(true);
     });
   }
 
-  static Future<void> fetchDataPeriodically() async {
-    // Implement the periodic data fetching logic here
-    // You can reuse the fetchData() logic here
-  }
+  // static Future<void> fetchDataPeriodically() async {
+  //
+  // }
 
   @override
   void dispose() {
-    // Cancel the timer and close the stream when the widget is disposed
     timer?.cancel();
     _dataStreamController.close();
     super.dispose();
@@ -98,20 +94,20 @@ class _GasLevelState extends State<GasLevel> {
 
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
-      // Emit new data through the stream
+
       _dataStreamController.add({
         'lpgStatus': data['feeds'][0]['field1']?.toString() ?? 'Field1 not available',
         'test': data['feeds'][0]['field2']?.toString() ?? 'Field2 not available',
       });
 
-      // Check if gas level is greater than 50 and send notification
+
       double gasLevel = double.tryParse(data['feeds'][0]['field2']?.toString() ?? '0.0') ?? 0.0;
       if (gasLevel > threshhold) {
         sendNotification("Gas leakage occurred","");
         vibratePhone();
       }
     } else {
-      // If there's an error fetching data, display an error message
+
       _dataStreamController.add({
         'lpgStatus': 'Error: Failed to load data',
         'test': 'Error',
@@ -144,9 +140,6 @@ class _GasLevelState extends State<GasLevel> {
   }
 
   void vibratePhone() {
-    // Vibrate the phone
-    // Note: This may not work on all devices
-    // Check for vibration support on the device
     Vibration.vibrate(duration: 2000);
   }
 
@@ -285,7 +278,6 @@ class _GasLevelState extends State<GasLevel> {
                 // Handle error case
                 return Text('Error: ${snapshot.error}');
               } else {
-                // Display a loading shimmer if no data is available yet
                 return buildLoadingShimmer();
               }
             },

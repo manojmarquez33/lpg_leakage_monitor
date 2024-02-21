@@ -9,9 +9,5 @@ class AppConstants {
 
   final Color customGreen = Color(0xFF38d39f);
 
-  //static final String siteLink = 'http://118.185.105.244/';
-
-  //static final String siteLink = 'http://192.168.249.51/canteen_10-11';
-
-  static final String siteLink = 'https://canteen.kamarajengg.edu.in';
+  //static final String siteLink = 'https://kcetmap.000webhostapp.com/';
 }

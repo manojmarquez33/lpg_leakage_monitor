@@ -35,15 +35,11 @@ class _SideNavigationDrawerState extends State<SideNavigationDrawer> {
     try {
       final response = await http.get(Uri.parse(apiUrl));
       if (response.statusCode == 200) {
-        // Assuming the response contains the username in plain text
-        // Handle the API response here
         print('API Response: ${response.body}');
       } else {
-        // Handle errors here
         print('Failed to fetch username. Status code: ${response.statusCode}');
       }
     } catch (e) {
-      // Handle exceptions here
       print('Error fetching username: $e');
     }
   }

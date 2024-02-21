@@ -27,7 +27,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'LPG Leakage Detector',
+      title: 'Smart LPG Monitor',
       // theme: ThemeData(
       //   primarySwatch: Colors.blue,
       // ),
@@ -59,7 +59,7 @@ class _MyHomePageState extends State<MyHomePage> {
       key: _scaffoldKey,
       appBar: AppBar(
         title: Text(
-          'LPG Leakage Monitor',
+          'Smart LPG Monitor',
           style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold),
         ),
         // backgroundColor:Color(0xFF4285F4),
@@ -82,9 +82,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 items: const [
                   'assets/lpg1.jpeg',
-                  'assets/lpg2.jpeg',
+                  'assets/banner (1).png',
+                  'assets/banner (2).png',
                   'assets/lpg3.jpeg',
-                  'assets/lpg1.jpeg',
                 ].map((imagePath) {
                   return Builder(
                     builder: (BuildContext context) {
@@ -188,7 +188,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 borderRadius: BorderRadius.circular(10.0),
                 child: Image.asset(
                   imagePath,
-                  fit: BoxFit.fill,
+                  fit: BoxFit.cover,
                 ),
               ),
             ),

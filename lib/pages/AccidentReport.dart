@@ -65,12 +65,11 @@ class _AccidentReportState extends State<AccidentReport> {
                   SizedBox(height: 20),
                   ElevatedButton(
                     onPressed: () {
-                      // Call function to send data to PHP backend
                       sendDataToBackend();
                     },
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all<Color>(Color(0xFF4285F4)),
-                      elevation: MaterialStateProperty.all<double>(8.0), // Adjust elevation as needed
+                      elevation: MaterialStateProperty.all<double>(8.0),
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                         RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10.0),
@@ -139,14 +138,12 @@ class _AccidentReportState extends State<AccidentReport> {
         );
 
         if (response.statusCode == 200) {
-          // Show success toast
           Fluttertoast.showToast(
             msg: 'Data sent successfully!',
             backgroundColor: Colors.green,
             textColor: Colors.white,
           );
 
-          // Clear text fields after successful submission
           _nameController.clear();
           _addressController.clear();
           _cityController.clear();

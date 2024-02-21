@@ -20,65 +20,6 @@ class GuideLines extends StatelessWidget {
             },
           ),
         ),
-        // drawer: Drawer(
-        //   child: ListView(
-        //     padding: EdgeInsets.zero,
-        //     children: [
-        //       DrawerHeader(
-        //         decoration: BoxDecoration(color: Colors.white),
-        //         child: Column(
-        //           crossAxisAlignment: CrossAxisAlignment.start,
-        //           children: [
-        //             Image.asset(
-        //               'assets/lpg.png',
-        //               height: 64,
-        //               width: 64,
-        //             ),
-        //             SizedBox(height: 8),
-        //             Text(
-        //               'LPG leakage detector',
-        //               style: TextStyle(
-        //                 color: Colors.black,
-        //                 fontSize: 24,
-        //               ),
-        //             ),
-        //             Text(
-        //               'CodeMub',
-        //               style: TextStyle(
-        //                 color: Colors.black,
-        //                 fontSize: 15,
-        //               ),
-        //             ),
-        //           ],
-        //         ),
-        //       ),
-        //       ListTile(
-        //         leading: Icon(Icons.share),
-        //         title: Text('Share app'),
-        //         onTap: () {
-        //           // TODO: Implement share app functionality
-        //           Navigator.pop(context);
-        //         },
-        //       ),
-        //       ListTile(
-        //         leading: Icon(Icons.star),
-        //         title: Text('Rate App'),
-        //         onTap: () {
-        //           // TODO: Implement rate app functionality
-        //           Navigator.pop(context);
-        //         },
-        //       ),
-        //       ListTile(
-        //         leading: Icon(Icons.bug_report),
-        //         title: Text('Report Bug'),
-        //         onTap: () {
-        //           // TODO: Implement report bug functionality
-        //           Navigator.pop(context);
-        //         },
-        //       ),
-        //     ],
-        //   ),
-        // ),
         body: SafetyGuidelinesPage(),
       ),
     );
