@@ -1,8 +1,10 @@
 <div align='center'>
-
-<img src=https://github.com/manojmarquez33/lpg_leakage_monitor/blob/master/screenshots/banner.png alt="logo" width=1980 height=720 />
-
+ 
 <h1>Smart LPG leakage detector </h1>
+ 
+<img src=https://github.com/manojmarquez33/lpg_leakage_monitor/blob/master/screenshots/banner.png alt="logo" width=700 height=450 />
+
+
 <!-- <h4> <span> · </span> <a href="https://github.com/manojmarquez33/lpg_leakage_monitor/blob/master/README.md"> Documentation </a> <span> · </span> <a href="https://github.com/manojmarquez33/lpg_leakage_monitor/issues"> Report Bug </a> <span> · </span> <a href="https://github.com/manojmarquez33/lpg_leakage_monitor/issues"> Request Feature </a> </h4> -->
 
 
@@ -15,16 +17,6 @@
 
 
 ## :star2: About the Project
-
-### :camera: Screenshots
-<div align="center"> <a href=""><img src="https://github.com/manojmarquez33/lpg_leakage_monitor/blob/master/screenshots/image%201.jpg" alt='image' width='800'/></a> </div>
-<div align="center"> <a href=""><img src="https://github.com/manojmarquez33/lpg_leakage_monitor/blob/master/screenshots/image%203.jpg" alt='image' width='800'/></a> </div>
-<div align="center"> <a href=""><img src="https://github.com/manojmarquez33/lpg_leakage_monitor/blob/master/screenshots/image%202%20(1).jpg" alt='image' width='800'/></a> </div>
-<div align="center"> <a href=""><img src="https://github.com/manojmarquez33/lpg_leakage_monitor/blob/master/screenshots/image%204.jpg" alt='image' width='800'/></a> </div>
-<div align="center"> <a href=""><img src="https://github.com/manojmarquez33/lpg_leakage_monitor/blob/master/screenshots/image%205.jpg" alt='image' width='800'/></a> </div>
-<div align="center"> <a href=""><img src="https://github.com/manojmarquez33/lpg_leakage_monitor/blob/master/screenshots/image%206.jpg" alt='image' width='800'/></a> </div>
-
-
 
 ## :toolbox: Getting Started
 
@@ -68,3 +60,13 @@ vibration: ^1.8.4
 Manojkumar - - manoj17kumar10@gmail.com
 
 Project Link: [https://github.com/manojmarquez33/lpg_leakage_monitor](https://github.com/manojmarquez33/lpg_leakage_monitor)
+
+
+### :camera: Screenshots
+<div align="center"> <a href=""><img src="https://github.com/manojmarquez33/lpg_leakage_monitor/blob/master/screenshots/image%201.jpg" alt='image' width='800'/></a> </div>
+<div align="center"> <a href=""><img src="https://github.com/manojmarquez33/lpg_leakage_monitor/blob/master/screenshots/image%203.jpg" alt='image' width='800'/></a> </div>
+<div align="center"> <a href=""><img src="https://github.com/manojmarquez33/lpg_leakage_monitor/blob/master/screenshots/image%202%20(1).jpg" alt='image' width='800'/></a> </div>
+<div align="center"> <a href=""><img src="https://github.com/manojmarquez33/lpg_leakage_monitor/blob/master/screenshots/image%204.jpg" alt='image' width='800'/></a> </div>
+<div align="center"> <a href=""><img src="https://github.com/manojmarquez33/lpg_leakage_monitor/blob/master/screenshots/image%205.jpg" alt='image' width='800'/></a> </div>
+<div align="center"> <a href=""><img src="https://github.com/manojmarquez33/lpg_leakage_monitor/blob/master/screenshots/image%206.jpg" alt='image' width='800'/></a> </div>
+
